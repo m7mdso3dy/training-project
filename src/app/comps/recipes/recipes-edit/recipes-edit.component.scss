@@ -1,0 +1,75 @@
+.add-edit-recipe {
+  margin: 48px 120px;
+  font-size: 24px;
+  button{
+    cursor: pointer;
+  }
+  .meta-data {
+    display: flex;
+    flex-wrap: wrap;
+    .form-control {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .input {
+        width: 35%;
+        padding: 12px;
+        margin-block: 12px;
+        font-size: 16px;
+      }
+    }
+  }
+  .ings-data {
+    .add-new-ingerdient {
+      display: flex;
+      > * {
+        margin-inline-end: 10px;
+        input {
+          padding: 11px;
+          border-radius: 5px;
+          border-color: black;
+          border: 1px solid;
+        }
+        button {
+          padding: 12px;
+          background-color: goldenrod;
+          border: none;
+          border-radius: 5px;
+          color: white;
+        }
+      }
+    }
+    .ings-list{
+      div{
+        display: flex;
+        position: relative;
+        p{
+          padding: 10px;
+          font-size: 24px;
+          margin-inline-end:12px ;
+        }
+      }
+    }
+  }
+  .actions {
+    display: flex;
+    button {
+      padding: 20px;
+      border: none;
+      border-radius: 5px;
+      margin-inline-end: 20px;
+    }
+    .save-add-recipe {
+      button {
+        background-color: rgba($color: green, $alpha: 0.8);
+        color: white;
+      }
+    }
+    .delete-recipe {
+      button {
+        background-color: rgba($color: red, $alpha: 0.8);
+        color: white;
+      }
+    }
+  }
+}

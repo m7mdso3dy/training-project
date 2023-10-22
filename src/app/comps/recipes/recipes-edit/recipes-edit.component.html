@@ -1,0 +1,69 @@
+<div class="add-edit-recipe">
+  <h3>
+    Recipe
+  </h3>
+  <div class="recipe-data">
+    <form class="recipe-data-form">
+      <div class="meta-data">
+        <div class="form-control">
+          <label for="recipe-name"> Name </label>
+          <input class="input" [(ngModel)]="activeRecipe.name" name="name" type="text" id="recipe-name">
+        </div>
+        <div class="form-control">
+          <label for="recipe-name"> Image URL </label>
+          <input class="input" [(ngModel)]="activeRecipe.imageURL" name="imageURL" type="text" id="recipe-image-url">
+        </div>
+        <div class="form-control">
+          <label for="recipe-name"> Description </label>
+          <textarea class="input" [(ngModel)]="activeRecipe.description" name="description" id="recipe-decription"
+            rows="10"></textarea>
+        </div>
+      </div>
+      <hr>
+      <div class="ings-data">
+        <h4>
+          Ingerdients
+        </h4>
+        <div class="add-new-ingerdient">
+          <div class="form-control">
+            <input class="input" [(ngModel)]="activeIngredient.name" name="ing-name" type="text" id="ing-name"
+              placeholder="Name">
+          </div>
+          <div class="form-control">
+            <input class="input" type="number" [(ngModel)]="activeIngredient.amount" name="ing-amount" id="ing-amount"
+              placeholder="Amount">
+          </div>
+          <div class="add-ing-action">
+            <button (click)="addNewIngerdient()">
+              Add Ingerdient
+            </button>
+          </div>
+        </div>
+        <div class="ings-list">
+          <div *ngFor="let ing of activeRecipe.ingredients" class="ing">
+            <p> {{ ing.name }} </p>
+            <p> {{ ing.amount }} </p>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="recipe-actions">
+        <h4>
+          Recipe Actions
+        </h4>
+        <div class="actions">
+          <div class="save-add-recipe">
+            <button class="save">
+              {{ isEditing ? 'Update': 'Add' }}
+            </button>
+          </div>
+          <div *ngIf="isEditing" class="delete-recipe">
+            <button class="">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="section-title">
+  <h3>
+    Available Recipes
+  </h3>
+  <div class="add-new-recipe-action">
+    <button class="new-recipe-action" routerLink="new">
+      Create New Recipe
+    </button>
+  </div>
+</div>
+<div class="list-continer">
+  <div class="recipe-card" *ngFor="let rec of recipes">
+    <h4> {{ rec.name }} </h4>
+    <p>{{rec.description}} </p>
+    <img [src]="rec.imageURL" alt="recipe-name">
+  </div>
+</div>

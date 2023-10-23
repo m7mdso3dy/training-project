@@ -9,7 +9,7 @@
   </div>
 </div>
 <div class="list-continer">
-  <div class="recipe-card" *ngFor="let rec of recipes">
+  <div (click)="showRecipeDetails(i)" class="recipe-card" *ngFor="let rec of recipes;let i = index">
     <h4> {{ rec.name }} </h4>
     <p>{{rec.description}} </p>
     <img [src]="rec.imageURL" alt="recipe-name">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesDataService } from '../recipes-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe, Ingredient } from '../recipes.model';
 @Component({
   selector: 'app-recipes-edit',
@@ -9,7 +9,7 @@ import { Recipe, Ingredient } from '../recipes.model';
 })
 export class RecipesEditComponent implements OnInit {
   isEditing: Boolean = false;
-  activeRecipeIndex: number | undefined = undefined;
+  activeRecipeIndex: number = NaN;
   activeRecipe: Recipe = {
     name: '',
     description: '',
@@ -22,7 +22,8 @@ export class RecipesEditComponent implements OnInit {
   };
   constructor(
     private recipeService: RecipesDataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   addNewIngerdient() {
     this.activeRecipe.ingredients.push({
@@ -30,7 +31,32 @@ export class RecipesEditComponent implements OnInit {
       amount: this.activeIngredient.amount,
     });
   }
+  navigateToRecipesPage() {
+    this.router.navigate(['/recipes']);
+  }
+  deleteRecipe() {
+    /* use recipes service to delete the current recipe */
+    if (this.activeRecipeIndex) {
+      this.recipeService.deleteExistingRecipe(this.activeRecipeIndex);
+      this.navigateToRecipesPage();
+    }
+  }
+  add_update_recipe() {
+    /**
+     * use recipes service to add or update the recipes based on the edit mode
+     */
+    console.log(this.isEditing, this.activeRecipeIndex);
 
+    if (this.isEditing && this.activeRecipeIndex >= 0) {
+      this.recipeService.updateExistingRecipe(
+        this.activeRecipe,
+        this.activeRecipeIndex
+      );
+    } else {
+      this.recipeService.addNewRecipe(this.activeRecipe);
+    }
+    this.navigateToRecipesPage();
+  }
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       if (param['id']) {

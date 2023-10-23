@@ -53,12 +53,12 @@
         </h4>
         <div class="actions">
           <div class="save-add-recipe">
-            <button class="save">
+            <button (click)="add_update_recipe()" class="save">
               {{ isEditing ? 'Update': 'Add' }}
             </button>
           </div>
           <div *ngIf="isEditing" class="delete-recipe">
-            <button class="">
+            <button (click)="deleteRecipe()" class="">
               Delete
             </button>
           </div>

@@ -26,13 +26,25 @@
     border: 1px solid rgba(gray, 0.5);
     border-radius: 10px;
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-inline-end:24px ;
+    margin-inline-end: 24px;
+    margin-bottom: 24px;
     h4 {
       font-size: 36px;
     }
     img {
       margin-top: 16px;
       height: 150px;
+    }
+  }
+  .card-actions{
+    .add-to-shoping-list{
+      background-color: goldenrod;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 12px;
+      font-size: 16px;
     }
   }
 }

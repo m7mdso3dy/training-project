@@ -26,8 +26,14 @@
         </h4>
         <div class="add-new-ingerdient">
           <div class="form-control">
-            <input class="input" [(ngModel)]="activeIngredient.name" name="ing-name" type="text" id="ing-name"
-              placeholder="Name">
+            <!-- <input class="input" [(ngModel)]="activeIngredient.name" name="ing-name" type="text" id="ing-name"
+              placeholder="Name"> -->
+            <select [(ngModel)]="activeIngredient.name" name="ing-name" class="form-control" placeholder="Name">
+              <option class="ings-option" value="" disabled selected>Select an option</option>
+              <option *ngFor="let ing of ingredients" [value]="ing" class="ings-option">
+                {{ ing }}
+              </option>
+            </select>
           </div>
           <div class="form-control">
             <input class="input" type="number" [(ngModel)]="activeIngredient.amount" name="ing-amount" id="ing-amount"
@@ -40,9 +46,10 @@
           </div>
         </div>
         <div class="ings-list">
-          <div *ngFor="let ing of activeRecipe.ingredients" class="ing">
+          <div *ngFor="let ing of activeRecipe.ingredients;let i = index" class="ing">
             <p> {{ ing.name }} </p>
             <p> {{ ing.amount }} </p>
+            <p class="delete-ing" (click)="removeIngerdient(i)"> Delete </p>
           </div>
         </div>
       </div>

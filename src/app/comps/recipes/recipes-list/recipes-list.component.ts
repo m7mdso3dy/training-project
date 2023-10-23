@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesDataService } from 'src/app/comps/recipes/recipes-data.service';
-import { Recipe } from '../recipes.model';
+import { Ingredient, Recipe } from '../recipes.model';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-recipes-list',
@@ -14,7 +14,10 @@ export class RecipesListComponent implements OnInit {
     private router: Router
   ) {}
   showRecipeDetails(id: number) {
-    this.router.navigate(['/recipes', Number(id)+1]);
+    this.router.navigate(['/recipes', Number(id) + 1]);
+  }
+  addToShoppingList(i: number) {
+    let ingredients: Ingredient[] = [];
   }
   ngOnInit(): void {
     console.log(this.dataSeervice.getList());

@@ -13,5 +13,10 @@
     <h4> {{ rec.name }} </h4>
     <p>{{rec.description}} </p>
     <img [src]="rec.imageURL" alt="recipe-name">
+    <div class="card-actions">
+      <button class="add-to-shoping-list" (click)="addToShoppingList(i)">
+        Add To Shopping List
+      </button>
+    </div>
   </div>
 </div>

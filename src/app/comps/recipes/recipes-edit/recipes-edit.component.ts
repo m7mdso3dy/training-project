@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipesDataService } from '../recipes-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Recipe, Ingredient } from '../recipes.model';
+import { Recipe, Ingredient, Ingredients } from '../recipes.model';
 @Component({
   selector: 'app-recipes-edit',
   templateUrl: './recipes-edit.component.html',
   styleUrls: ['./recipes-edit.component.scss'],
 })
 export class RecipesEditComponent implements OnInit {
+  ingredients = Ingredients;
+  //
   isEditing: Boolean = false;
   activeRecipeIndex: number = NaN;
   activeRecipe: Recipe = {
@@ -56,6 +58,9 @@ export class RecipesEditComponent implements OnInit {
       this.recipeService.addNewRecipe(this.activeRecipe);
     }
     this.navigateToRecipesPage();
+  }
+  removeIngerdient(i: number) {
+    this.activeRecipe.ingredients.splice(i, 1);
   }
   ngOnInit(): void {
     this.route.params.subscribe((param) => {

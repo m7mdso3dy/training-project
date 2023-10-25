@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipesDataService } from '../recipes-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe, Ingredient, Ingredients } from '../recipes.model';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-recipes-edit',
   templateUrl: './recipes-edit.component.html',
@@ -25,7 +26,8 @@ export class RecipesEditComponent implements OnInit {
   constructor(
     private recipeService: RecipesDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
   addNewIngerdient() {
     this.activeRecipe.ingredients.push({
@@ -61,6 +63,15 @@ export class RecipesEditComponent implements OnInit {
   }
   removeIngerdient(i: number) {
     this.activeRecipe.ingredients.splice(i, 1);
+  }
+  onFileSelected(e: any) {
+    const formData = new FormData();
+    formData.append('file', e.target.files[0]);
+    this.http
+      .post('http://localhost:3000/upload-file', formData)
+      .subscribe((data: any) => {
+        this.activeRecipe.imageURL = `http://localhost:3000/uploads/${data.filePath}`;
+      });
   }
   ngOnInit(): void {
     this.route.params.subscribe((param) => {

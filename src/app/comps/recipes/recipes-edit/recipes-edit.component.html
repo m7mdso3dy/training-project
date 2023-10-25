@@ -10,11 +10,15 @@
           <input class="input" [(ngModel)]="activeRecipe.name" name="name" type="text" id="recipe-name">
         </div>
         <div class="form-control">
-          <label for="recipe-name"> Image URL </label>
+          <label for="recipe-image-url"> Image URL </label>
           <input class="input" [(ngModel)]="activeRecipe.imageURL" name="imageURL" type="text" id="recipe-image-url">
         </div>
         <div class="form-control">
-          <label for="recipe-name"> Description </label>
+          <label for="recipe-image-uploader"> Image Uploader </label>
+          <input class="input" name="uploadImage" id="recipe-image-uploader" type="file" (change)="onFileSelected($event)">
+        </div>
+        <div class="form-control">
+          <label for="recipe-decription"> Description </label>
           <textarea class="input" [(ngModel)]="activeRecipe.description" name="description" id="recipe-decription"
             rows="10"></textarea>
         </div>

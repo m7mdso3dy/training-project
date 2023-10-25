@@ -22,22 +22,32 @@ export class RecipesDataService {
       this.dataListSubject.next(recipes);
     });
   }
+  private updateDateFile(currentDataList: Recipe[]) {
+    this.http
+      .post('http://localhost:3000/update-data', currentDataList)
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
   addNewRecipe(newRecipe: Recipe) {
     const currentDataList = this.dataListSubject.value;
     currentDataList.push(newRecipe);
     this.dataListSubject.next(currentDataList);
+    this.updateDateFile(currentDataList);
   }
 
   updateExistingRecipe(updatedRecipe: Recipe, index: number) {
     const currentDataList = this.dataListSubject.value;
     currentDataList[index] = updatedRecipe;
     this.dataListSubject.next(currentDataList);
+    this.updateDateFile(currentDataList);
   }
 
   deleteExistingRecipe(index: number) {
     const currentDataList = this.dataListSubject.value;
     currentDataList.splice(index, 1);
     this.dataListSubject.next(currentDataList);
+    this.updateDateFile(currentDataList);
   }
 }

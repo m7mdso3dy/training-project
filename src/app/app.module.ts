@@ -8,6 +8,7 @@ import { RecipesListComponent } from './comps/recipes/recipes-list/recipes-list.
 import { RecipesEditComponent } from './comps/recipes/recipes-edit/recipes-edit.component';
 import { RecipesComponent } from './comps/recipes/recipes.component';
 import { FormsModule } from '@angular/forms';
+import { ShoppingListComponent } from './comps/shopping-list/shopping-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     RecipesListComponent,
     RecipesEditComponent,
     RecipesComponent,
+    ShoppingListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

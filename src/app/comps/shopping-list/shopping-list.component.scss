@@ -1,0 +1,82 @@
+.shopping-list-section {
+  margin: 48px 120px;
+  font-size: 24px;
+  .form-add-edit {
+    form.form {
+      display: flex;
+      align-items: center;
+      .form-inputs {
+        display: flex;
+        .form-control {
+          input,
+          select {
+            padding: 24px;
+            margin-inline-end: 12px;
+            font-size: 16px;
+          }
+        }
+      }
+      .form-actions {
+        button {
+          padding: 26px;
+          margin-inline-end: 12px;
+          font-size: 16px;
+          background-color: goldenrod;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .shopping-list-ings {
+    display: flex;
+    flex-wrap: wrap;
+    .ingredient {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid greenyellow;
+      width: 100%;
+      margin-block:16px ;
+      .content {
+        display: flex;
+        align-items: center;
+        .ing-name {
+          margin-inline-end: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .ing-amount {
+          background-color: mediumaquamarine;
+          color: white;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+        }
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        & > * {
+          margin-inline-end: 16px;
+        }
+        .fa-solid.fa-pen-to-square {
+          color: blue;
+        }
+        .fa-solid.fa-trash {
+          color: red;
+        }
+      }
+    }
+  }
+}
+.pointer {
+  cursor: pointer;
+}

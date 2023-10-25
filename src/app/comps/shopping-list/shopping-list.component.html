@@ -1,0 +1,56 @@
+<div class="shopping-list-section">
+  <div class="form-add-edit">
+    <form action="" class="form">
+      <div class="form-inputs">
+        <div class="form-control">
+          <select [(ngModel)]="activeIngerdient.name" name="ing-name" class="form-control" placeholder="Name">
+            <option class="ings-option" value="" disabled selected>Select an option</option>
+            <option *ngFor="let ing of ingredients" [value]="ing" class="ings-option">
+              {{ ing }}
+            </option>
+          </select>
+        </div>
+        <div class="form-control">
+          <input class="input" type="number" [(ngModel)]="activeIngerdient.amount" name="ing-amount" id="ing-amount"
+            placeholder="Amount">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button *ngIf="isEditing; else elseButtonBlock" (click)="updateIngerdient()">
+          Update
+        </button>
+        <ng-template #elseButtonBlock>
+          <button (click)="addNewIngerdientToShoppingList()">
+            Add
+          </button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+  <hr>
+  <div class="shopping-list-ings-section">
+    <div class="shopping-list-ings" *ngIf="shoppingList.length > 0; else elseBlock">
+      <div class="ingredient" *ngFor="let ing of shoppingList ; let i  =index">
+        <div class="content">
+          <p class="ing-name">
+            {{ing.name}}
+          </p>
+          <p class="ing-amount">
+            {{ing.amount}}
+          </p>
+        </div>
+        <div class="actions">
+          <div (click)="editIngredient(i)" class="edit-action pointer">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </div>
+          <div (click)="deleteIngredient(i)" class="delete-action pointer">
+            <i class="fa-solid fa-trash"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock>
+      No Ingerdients Added
+    </ng-template>
+  </div>
+</div>

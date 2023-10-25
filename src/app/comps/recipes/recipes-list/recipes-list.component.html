@@ -14,7 +14,7 @@
     <p>{{rec.description}} </p>
     <img [src]="rec.imageURL" alt="recipe-name">
     <div class="card-actions">
-      <button class="add-to-shoping-list" (click)="addToShoppingList(i)">
+      <button class="add-to-shoping-list pointer" (click)="addToShoppingList($event,i)">
         Add To Shopping List
       </button>
     </div>

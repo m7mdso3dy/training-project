@@ -22,14 +22,14 @@ export class RecipesListComponent implements OnInit {
     e.stopPropagation();
 
     let ingredients: Ingredient[] = [];
-    ingredients = this.dataSeervice.getList()[i].ingredients;
+    ingredients = this.recipes[i].ingredients;
     ingredients.forEach((ing) => {
       this.shoppingListSeervice.addNewIngredient(ing);
     });
   }
   ngOnInit(): void {
-    console.log(this.dataSeervice.getList());
-
-    this.recipes = this.dataSeervice.getList();
+    this.dataSeervice.dataList$.subscribe((data) => {
+      this.recipes = data;
+    });
   }
 }

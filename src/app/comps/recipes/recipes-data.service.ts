@@ -1,55 +1,43 @@
 import { Injectable } from '@angular/core';
-
-import { Recipe } from './recipes.model';
+import { Recipe, RecipeResponse } from './recipes.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipesDataService {
-  private dataList: Recipe[] = [
-    {
-      name: 'recipe1',
-      description: 'desc 1',
-      imageURL:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505',
-      ingredients: [],
-    },
-    {
-      name: 'recipe2',
-      description: 'desc 1',
-      imageURL:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505',
-      ingredients: [],
-    },
-    {
-      name: 'recipe3',
-      description: 'desc 1',
-      imageURL:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&resize=556,505',
-      ingredients: [
-        {
-          name: 'ing 1',
-          amount: 5,
-        },
-        {
-          name: 'ing 2',
-          amount: 10,
-        },
-      ],
-    },
-  ];
+  private dataListSubject: BehaviorSubject<Recipe[]> = new BehaviorSubject<
+    Recipe[]
+  >([]);
+  dataList$: Observable<Recipe[]> = this.dataListSubject.asObservable();
 
-  getList() {
-    return this.dataList;
+  constructor(private http: HttpClient) {
+    this.loadDataFromJson();
   }
+
+  private loadDataFromJson() {
+    this.http.get('./../../../assets/data.json').subscribe((res) => {
+      const recipes = (res as RecipeResponse).recipes;
+      this.dataListSubject.next(recipes);
+    });
+  }
+
   addNewRecipe(newRecipe: Recipe) {
-    this.dataList.push(newRecipe);
+    const currentDataList = this.dataListSubject.value;
+    currentDataList.push(newRecipe);
+    this.dataListSubject.next(currentDataList);
   }
-  updateExistingRecipe(updatedRecipe: Recipe, i: number) {
-    console.log(i);
-    this.dataList[i] = updatedRecipe;
+
+  updateExistingRecipe(updatedRecipe: Recipe, index: number) {
+    const currentDataList = this.dataListSubject.value;
+    currentDataList[index] = updatedRecipe;
+    this.dataListSubject.next(currentDataList);
   }
-  deleteExistingRecipe(i: number) {
-    this.dataList.splice(i, 1);
+
+  deleteExistingRecipe(index: number) {
+    const currentDataList = this.dataListSubject.value;
+    currentDataList.splice(index, 1);
+    this.dataListSubject.next(currentDataList);
   }
 }

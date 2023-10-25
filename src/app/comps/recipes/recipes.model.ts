@@ -10,6 +10,10 @@ export interface Ingredient {
   amount: number;
 }
 
+export interface RecipeResponse {
+  recipes: Recipe[]; // Adjust the type of 'recipes' based on the actual structure
+}
+
 export const Ingredients = [
   'Tomato',
   'Eggplant',

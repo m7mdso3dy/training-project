@@ -67,16 +67,18 @@ export class RecipesEditComponent implements OnInit {
       if (param['id']) {
         this.isEditing = true;
         this.activeRecipeIndex = Number(param['id']) - 1;
-        const fetchedRecipe = this.recipeService
-          .getList()
-          .find((item, i) => i == this.activeRecipeIndex);
-
-        this.activeRecipe = {
-          name: fetchedRecipe?.name || '',
-          description: fetchedRecipe?.description || '',
-          imageURL: fetchedRecipe?.imageURL || '',
-          ingredients: fetchedRecipe?.ingredients || [],
-        };
+        let fetchedRecipe: Recipe | undefined;
+        this.recipeService.dataList$.subscribe((data) => {
+          if (data.length > 0) {
+            fetchedRecipe = data.find((item, i) => i == this.activeRecipeIndex);
+          }
+          this.activeRecipe = {
+            name: fetchedRecipe?.name || '',
+            description: fetchedRecipe?.description || '',
+            imageURL: fetchedRecipe?.imageURL || '',
+            ingredients: fetchedRecipe?.ingredients || [],
+          };
+        });
       }
     });
   }

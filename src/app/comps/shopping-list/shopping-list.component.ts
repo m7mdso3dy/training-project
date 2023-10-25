@@ -53,6 +53,5 @@ export class ShoppingListComponent implements OnInit {
   }
   ngOnInit(): void {
     this.shoppingList = this.shoppingListService.getShoppingList();
-    console.log(this.shoppingList);
   }
 }

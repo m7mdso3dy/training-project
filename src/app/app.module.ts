@@ -10,6 +10,7 @@ import { RecipesComponent } from './comps/recipes/recipes.component';
 import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './comps/shopping-list/shopping-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './comps/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     RecipesEditComponent,
     RecipesComponent,
     ShoppingListComponent,
+    LoginComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

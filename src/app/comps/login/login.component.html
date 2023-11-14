@@ -1,6 +1,6 @@
 <div class="login-section">
   <div class="login-form">
-    <form>
+    <form (submit)="onSubmitLoginForm()">
       <div class="form-control">
         <label for="user-email"> Email </label>
         <input class="input" [(ngModel)]="email" name="user-email" type="email" id="user-email">
@@ -11,10 +11,13 @@
       </div>
       <hr>
       <div class="form-action">
-        <button type="submit" class="pointer">
+        <button [disabled]="activateSubmitValue" type="submit" class="pointer">
           Login
         </button>
       </div>
     </form>
   </div>
+</div>
+<div class="loader">
+  <app-loader [isLoading]="isLoading"></app-loader>
 </div>

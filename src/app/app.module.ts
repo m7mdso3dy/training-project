@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './comps/shopping-list/shopping-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './comps/login/login.component';
+import { LoaderComponent } from './comps/UI/loader/loader.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { LoginComponent } from './comps/login/login.component';
     RecipesComponent,
     ShoppingListComponent,
     LoginComponent,
+    LoaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

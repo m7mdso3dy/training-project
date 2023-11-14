@@ -17,7 +17,7 @@ export class RecipesDataService {
   }
 
   private loadDataFromJson() {
-    this.http.get('./../../../assets/data.json').subscribe((res) => {
+    this.http.get('http://localhost:3000/get-recipes').subscribe((res) => {
       const recipes = (res as RecipeResponse).recipes;
       this.dataListSubject.next(recipes);
     });

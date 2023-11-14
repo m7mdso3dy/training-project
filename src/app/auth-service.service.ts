@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthServiceService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
   private isAuthed: boolean = false;
   userId: string = '';
-  logIn(userCreds: UserCreds) {
-    /**
-     * request to check creds and return with the user Id for storing
-     */
-    this.isAuthed = true;
+  logIn(userCreds: UserCreds): Observable<boolean> {
+    return this.http
+      .post<loginResponseInterface>('http://localhost:3000/login', {
+        userCreds,
+      })
+      .pipe(
+        map((res) => {
+          localStorage.setItem('token', res.token);
+          return true;
+        })
+      );
   }
   logOut() {
     this.isAuthed = false;
@@ -24,4 +32,8 @@ export class AuthServiceService {
 export interface UserCreds {
   email: string;
   password: string;
+}
+
+export interface loginResponseInterface {
+  token: string;
 }

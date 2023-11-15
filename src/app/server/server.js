@@ -52,6 +52,8 @@ app.post("/login", async (req, res) => {
   const user = users.filter(
     (user) => user.username == req.body.userCreds.email
   )[0];
+  const roles = user.roles;
+  console.log(roles);
   if (user) {
     //verify password
     user.password == req.body.userCreds.password ? (userVerfied = true) : "";
@@ -62,8 +64,7 @@ app.post("/login", async (req, res) => {
   if (userVerfied) {
     const user = { username: req.body.userCreds.email };
     const token = jwt.sign(user, secretKey, { expiresIn: "1h" }); // Set an expiration time
-
-    return res.json({ token });
+    return res.json({ token, roles });
   } else {
     return res.status(401).json({ message: "Invalid credentials" });
   }

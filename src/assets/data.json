@@ -43,15 +43,18 @@
   "users": [
     {
       "username": "user1@test.dev",
-      "password": "user123"
+      "password": "user123",
+      "roles": ["admin"]
     },
     {
       "username": "user2@test.dev",
-      "password": "user123"
+      "password": "user123",
+      "roles": ["user"]
     },
     {
       "username": "user3@test.dev",
-      "password": "user123"
+      "password": "user123",
+      "roles": ["admin", "user"]
     }
   ],
   "shoppingLists": [

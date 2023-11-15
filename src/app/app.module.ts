@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './comps/login/login.component';
 import { LoaderComponent } from './comps/UI/loader/loader.component';
 import { AuthInterceptor } from './auth.interceptor';
+import { RolesvalidatorsDirective } from './directives/rolesvalidators.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './auth.interceptor';
     ShoppingListComponent,
     LoginComponent,
     LoaderComponent,
+    RolesvalidatorsDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

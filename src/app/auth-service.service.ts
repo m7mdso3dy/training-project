@@ -17,6 +17,7 @@ export class AuthServiceService {
       .pipe(
         map((res) => {
           localStorage.setItem('token', res.token);
+          localStorage.setItem('roles', JSON.stringify(res.roles));
           return true;
         })
       );
@@ -36,4 +37,5 @@ export interface UserCreds {
 
 export interface loginResponseInterface {
   token: string;
+  roles: string[];
 }

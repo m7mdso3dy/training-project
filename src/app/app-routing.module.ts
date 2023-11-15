@@ -7,6 +7,7 @@ import { RecipesEditComponent } from './comps/recipes/recipes-edit/recipes-edit.
 import { ShoppingListComponent } from './comps/shopping-list/shopping-list.component';
 
 import { LoginComponent } from 'src/app/comps/login/login.component';
+import { RoleBasedPermissionGuard } from './routeGuards/role-based-permission.guard';
 const routes: Routes = [
   {
     path: 'recipes',
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListComponent,
+    canActivate: [RoleBasedPermissionGuard],
+    data: {
+      requiredRoles: ['user'], // Specify the required roles for this route
+    },
   },
   {
     path: 'login',

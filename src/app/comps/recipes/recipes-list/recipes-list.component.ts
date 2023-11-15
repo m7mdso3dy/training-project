@@ -16,7 +16,13 @@ export class RecipesListComponent implements OnInit {
     private router: Router
   ) {}
   showRecipeDetails(id: number) {
-    this.router.navigate(['/recipes', Number(id) + 1]);
+    const roles = localStorage.getItem('roles');
+    const rolesArr: string[] = roles ? JSON.parse(roles) : [];
+    if (rolesArr.includes('admin')) {
+      this.router.navigate(['/recipes', Number(id) + 1]);
+    } else {
+      return;
+    }
   }
   addToShoppingList(e: Event, i: number) {
     e.stopPropagation();

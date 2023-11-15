@@ -3,7 +3,7 @@
     Available Recipes
   </h3>
   <div class="add-new-recipe-action">
-    <button class="new-recipe-action" routerLink="new">
+    <button *appRoleBasedPermission="['admin']" class="new-recipe-action" routerLink="new">
       Create New Recipe
     </button>
   </div>

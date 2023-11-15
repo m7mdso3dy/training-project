@@ -9,6 +9,7 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const { secretKey } = require("./congig"); // Create a separate file to store your secret key
 const jwtAuth = require("./jwt"); // Import the middleware
+const { log } = require("console");
 
 // Corrected path to use "assets" instead of "assests"
 const recipesFilePath = "../../assets/data.json";
@@ -59,7 +60,7 @@ app.post("/login", async (req, res) => {
   }
 
   if (userVerfied) {
-    const user = { username: req.body.username };
+    const user = { username: req.body.userCreds.email };
     const token = jwt.sign(user, secretKey, { expiresIn: "1h" }); // Set an expiration time
 
     return res.json({ token });
@@ -70,8 +71,8 @@ app.post("/login", async (req, res) => {
 
 ///// get recipes
 app.get("/get-recipes", jwtAuth, async (req, res, next) => {
-  const allData = await getData();
-  res.json({ recipes: allData.recipes });
+  const allData = await getData;
+  return res.json({ recipes: allData.recipes });
 });
 
 ///// handle updating recipes
@@ -100,6 +101,16 @@ app.post("/upload-file", jwtAuth, upload.single("file"), (req, res) => {
   } else {
     res.status(400).json({ error: "No file uploaded" });
   }
+});
+/////
+app.get("/get-user-shopping-list", jwtAuth, async (req, res, next) => {
+  const data = await getData;
+  const shoppingLists = [...data.shoppingLists];
+  // console.log(req.user.username, shoppingLists[0].ings);
+  const userShopingList = shoppingLists.filter(
+    (list) => list.userName == req.user.username
+  );
+  return res.json(userShopingList[0]?.ings);
 });
 
 app.listen(port, () => {

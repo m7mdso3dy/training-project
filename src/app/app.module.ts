@@ -9,9 +9,10 @@ import { RecipesEditComponent } from './comps/recipes/recipes-edit/recipes-edit.
 import { RecipesComponent } from './comps/recipes/recipes.component';
 import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './comps/shopping-list/shopping-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './comps/login/login.component';
 import { LoaderComponent } from './comps/UI/loader/loader.component';
+import { AuthInterceptor } from './auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,13 @@ import { LoaderComponent } from './comps/UI/loader/loader.component';
     LoaderComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

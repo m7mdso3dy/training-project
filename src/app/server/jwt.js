@@ -1,16 +1,15 @@
-const jwt = require('jsonwebtoken');
-const { secretKey } = require('./congig'); // Create a separate file to store your secret key
+const jwt = require("jsonwebtoken");
+const { secretKey } = require("./congig"); // Create a separate file to store your secret key
 
 function authenticateJWT(req, res, next) {
-  const token = req.header('Authorization');
-
+  const token = req.headers["authorization"].split(" ")[1];
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized: Missing token' });
+    return res.status(401).json({ message: "Unauthorized: Missing token" });
   }
 
   jwt.verify(token, secretKey, (err, user) => {
     if (err) {
-      return res.status(403).json({ message: 'Forbidden: Invalid token' });
+      return res.status(403).json({ message: "Forbidden: Invalid token" });
     }
     req.user = user;
     next();

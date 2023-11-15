@@ -52,6 +52,8 @@ export class ShoppingListComponent implements OnInit {
     this.resetIngForm();
   }
   ngOnInit(): void {
-    this.shoppingList = this.shoppingListService.getShoppingList();
+    this.shoppingListService.getShoppingList().subscribe((ingredients) => {
+      this.shoppingList = ingredients;
+    });
   }
 }

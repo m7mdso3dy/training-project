@@ -53,5 +53,41 @@
       "username": "user3@test.dev",
       "password": "user123"
     }
+  ],
+  "shoppingLists": [
+    {
+      "userName": "user1@test.dev",
+      "ings": [
+        {
+          "name": "Tomato",
+          "amount": 5
+        },
+        {
+          "name": "Eggplant",
+          "amount": 15
+        },
+        {
+          "name": "Eggs",
+          "amount": 8
+        }
+      ]
+    },
+    {
+      "userName": "user2@test.dev",
+      "ings": [
+        {
+          "name": "Tomato",
+          "amount": 15
+        },
+        {
+          "name": "Zuchine",
+          "amount": 9
+        },
+        {
+          "name": "Eggplant",
+          "amount": 3
+        }
+      ]
+    }
   ]
 }

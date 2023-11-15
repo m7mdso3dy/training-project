@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from './recipes/recipes.model';
-
+import { Observable, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingListService {
-  private shoppingList: Ingredient[] = [
-    {
-      name: 'Tomato',
-      amount: 5,
-    },
-  ];
+  private shoppingList: Ingredient[] = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getShoppingList() {
-    return this.shoppingList;
+  getShoppingList(): Observable<Ingredient[]> {
+    return this.http
+      .get<Ingredient[]>('http://localhost:3000/get-user-shopping-list')
+      .pipe(
+        map((res) => {
+          this.shoppingList = res;
+          return res;
+        })
+      );
   }
 
   addNewIngredient(ing: Ingredient): void {
